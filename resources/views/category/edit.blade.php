@@ -24,14 +24,14 @@
         </ul>
     </div>
     @endif
-    <form class="form-horizontal" action="{{route('category.update', $data->id)}}" method="post">
+    <form class="form-horizontal" action="{{route('category.update', $categories->id)}}" method="post">
         @csrf
         @method('PUT')
 		<div class="box-body">
 			<div class="form-group">
 				<label for="name" class="col-sm-2 control-label">Name Category</label>
 				<div class="col-sm-10">
-					<input type="text" name="name" class="form-control" id="name" placeholder="Name Category" value="{{$data->name}}">
+					<input type="text" name="name" class="form-control" id="name" placeholder="Name Category" value="{{$categories->name}}">
 				</div>
 			</div>
 		</div>

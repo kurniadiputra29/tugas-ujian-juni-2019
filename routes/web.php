@@ -14,6 +14,9 @@
 Route::get('/', function () {
     return view('welcome');
 });
+Route::prefix('admin')->group(function (){
+	Route::get('dashboard', 'DashboardController@index')->name('dashboard.index');
+});
 
 Route::prefix('admin')->group(function (){
 	Route::get('user', 'UserController@index')->name('user.index');
@@ -23,4 +26,26 @@ Route::prefix('admin')->group(function (){
 	Route::put('user/{id}', 'UserController@update')->name('user.update');
 	Route::delete('user/{id}', 'UserController@destroy')->name('user.destroy');
 	Route::get('user/json_user', 'UserController@json_user');
+});
+
+Route::prefix('admin')->group(function (){
+	Route::get('category', 'CategoryController@index')->name('category.index');
+	Route::get('category/create', 'CategoryController@create')->name('category.create');
+	Route::post('category', 'CategoryController@store')->name('category.store');
+	Route::get('category/{id}/edit', 'CategoryController@edit')->name('category.edit');
+	Route::put('category/{id}', 'CategoryController@update')->name('category.update');
+	Route::delete('category/{id}', 'CategoryController@destroy')->name('category.destroy');
+	Route::get('category/json_category', 'CategoryController@json_category');
+});
+
+Route::prefix('admin')->group(function (){
+	Route::get('item', 'ItemController@index')->name('item.index');
+	Route::get('item/create', 'ItemController@create')->name('item.create');
+	Route::post('item', 'ItemController@store')->name('item.store');
+	Route::get('item/{id}/edit', 'ItemController@edit')->name('item.edit');
+	Route::put('item/{id}', 'ItemController@update')->name('item.update');
+	Route::delete('item/{id}', 'ItemController@destroy')->name('item.destroy');
+	Route::get('trash', 'ItemController@trash')->name('item.trash');
+	Route::delete('trash/{id}', 'ItemController@forceDelete')->name('item.forceDelete');
+	Route::get('item/json_item', 'ItemController@json_item');
 });

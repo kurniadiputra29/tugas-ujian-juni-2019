@@ -26,7 +26,7 @@
   <ul class="sidebar-menu" data-widget="tree">
     <li class="header">MAIN NAVIGATION</li>
     <li class="@if($get == 'dashboard') {{'active'}} @endif ">
-      <a href="{{-- {{route('dashboard.index')}} --}}">
+      <a href="{{route('dashboard.index')}}">
         <i class="fa fa-dashboard"></i> <span>Dashboard</span>
         <span class="pull-right-container">
         </span>
@@ -40,7 +40,7 @@
         </span>
       </a>
       <ul class="treeview-menu">
-        <li class="@if ( $get == 'category') {{'active'}} @endif"><a href="{{-- {{route('category.index')}} --}}"><i class="fa fa-circle-o" ></i>Category</a></li>
+        <li class="@if ( $get == 'category') {{'active'}} @endif"><a href="{{route('category.index')}}"><i class="fa fa-circle-o" ></i>Category</a></li>
         <li class="@if( $get == 'item') {{'active'}} @endif"><a href="{{-- {{route('item.index')}} --}}"><i class="fa fa-circle-o"></i>Item</a></li>
       </ul>
     </li>

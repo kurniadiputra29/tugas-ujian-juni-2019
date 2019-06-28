@@ -1,44 +1,61 @@
 @extends('layouts.app')
-@section('title', 'category')
+@section('title', 'members')
 @section('header')
-	<h1>
-        CATEGORY
-    </h1>
-    <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Product</a></li>
-        <li><a href="{{route('category.index')}}">Category</a></li>
-        <li class="active" > Edit Category</li>
-    </ol>
+<h1>
+  MEMBERS
+</h1>
+<ol class="breadcrumb">
+  <li><a href="#"><i class="fa fa-dashboard"></i> Members</a></li>
+  <li class="active">Index Members</li>
+</ol>
 @endsection
 @section('content')
-<div class="box box-info">
-    <div class="box-header with-border">
-       <h3 class="box-title">EDIT CATEGORY</h3>
-    </div>
-    @if (count($errors) > 0)
-    <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-    @endif
-    <form class="form-horizontal" action="{{route('category.update', $categories->id)}}" method="post">
-        @csrf
-        @method('PUT')
-		<div class="box-body">
-			<div class="form-group">
-				<label for="name" class="col-sm-2 control-label">Name Category</label>
-				<div class="col-sm-10">
-					<input type="text" name="name" class="form-control" id="name" placeholder="Name Category" value="{{$categories->name}}">
-				</div>
-			</div>
-		</div>
-        <div class="box-footer">
-            <a href="{{route('category.index')}}" class="btn btn-default">Cancel</a>
-            <button type="submit" class="btn btn-info pull-right">Submit</button>
-        </div>
-    </form>
+<div class="box">
+  <div class="box-header">
+    <h3 class="box-title">INDEX MEMBERS</h3>
+    <a href="{{route('member.create')}}" class="btn btn-info pull-right">Create</a>
+  </div>
+  <!-- /.box-header -->
+  <div class="box-body">
+    <table class="table table-bordered table-striped" id="table">
+      <thead>
+        <tr>
+          <th>No</th>
+          <th>NIP</th>
+          <th>Name</th>
+          <th>Alamat</th>
+          <th>Status</th>
+          <th>No. Telepon</th>
+          <th style="text-align: center;">Action</th>
+        </tr>
+      </thead>
+      @if (session('Success'))
+      <div class="alert alert-success">
+        {{ session('Success') }}
+      </div>
+      @endif
+    </table>
+  </div>
+  <!-- /.box-body -->
 </div>
 @endsection
+@push('scripts')
+<script>
+  $(function() {
+    $('#table').DataTable({
+      processing: true,
+      serverSide: true,
+      ajax: 'member/json_member',
+      columns: [
+      { data: 'id', name: 'id' },
+      { data: 'NIP', name: 'NIP' },
+      { data: 'name', name: 'name' },
+      { data: 'alamat', name: 'alamat' },
+      { data: 'status', name: 'status' },
+      { data: 'no_telp', name: 'no_telp' },
+      {data: 'action', name: 'action', orderable: false, searchable: false}
+      ]
+    });
+  });
+</script>
+@endpush

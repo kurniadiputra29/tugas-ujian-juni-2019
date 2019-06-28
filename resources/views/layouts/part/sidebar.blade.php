@@ -46,14 +46,14 @@
     </li>
     <li class="@if($get == 'member' OR $get == 'status') {{'active'}} @endif treeview">
       <a href="#">
-        <i class="fa fa-database"></i> <span>Members</span>
+        <i class="fa fa-users"></i> <span>Members</span>
         <span class="pull-right-container">
           <i class="fa fa-angle-left pull-right"></i>
         </span>
       </a>
       <ul class="treeview-menu">
         <li class="@if ( $get == 'status') {{'active'}} @endif"><a href="{{route('status.index')}}"><i class="fa fa-circle-o" ></i>Status</a></li>
-        <li class="@if( $get == 'member') {{'active'}} @endif"><a href="{{-- {{route('item.index')}} --}}"><i class="fa fa-circle-o"></i>Members</a></li>
+        <li class="@if( $get == 'member') {{'active'}} @endif"><a href="{{route('member.index')}}"><i class="fa fa-circle-o"></i>Members</a></li>
       </ul>
     </li>
     <li class="@if($get == 'order') {{'active'}} @endif ">

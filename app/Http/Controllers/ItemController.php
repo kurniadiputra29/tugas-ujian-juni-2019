@@ -25,7 +25,7 @@ class ItemController extends Controller
         })
         ->addColumn('action', function ($item) {
             return '<form action="'. route('item.destroy', $item->id) .'" method="POST" class="text-center">
-            <a href="' . route('item.edit', $item->id) . '" class="btn btn-xs btn-success"><i class="glyphicon glyphicon-edit"></i>Edit</a>
+            <a href="' . route('item.edit', $item->id) . '" class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i>Edit</a>
             <input type="hidden" name="_method" value="DELETE">
             <input type="hidden" name="_token" value="'. csrf_token() .'">
             <button type="submit" class="btn btn-xs btn-danger btn-label" onclick="javascript:return confirm(\'Apakah anda yakin ingin menghapus data ini?\')"><i class="fa fa-trash"></i>
@@ -98,7 +98,6 @@ class ItemController extends Controller
     public function edit($id)
     {
         $categories1 = Category::orderBy('id', 'asc')->get();
-        $categories2 = Category::find($id);
         $items = Item::find($id);
         return view('item.edit', compact('items', 'categories1', 'categories2'));
     }

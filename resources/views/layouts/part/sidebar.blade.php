@@ -41,7 +41,7 @@
       </a>
       <ul class="treeview-menu">
         <li class="@if ( $get == 'category') {{'active'}} @endif"><a href="{{route('category.index')}}"><i class="fa fa-circle-o" ></i>Category</a></li>
-        <li class="@if( $get == 'item') {{'active'}} @endif"><a href="{{-- {{route('item.index')}} --}}"><i class="fa fa-circle-o"></i>Item</a></li>
+        <li class="@if( $get == 'item') {{'active'}} @endif"><a href="{{route('item.index')}}"><i class="fa fa-circle-o"></i>Item</a></li>
       </ul>
     </li>
     <li class="@if($get == 'order') {{'active'}} @endif ">

@@ -19,8 +19,11 @@ class CreateItemsTable extends Migration
             $table->string('judul');
             $table->string('kode');
             $table->string('pengarang');
+            $table->string('penerbit');
             $table->integer('harga_beli');
             $table->date('tanggal_beli');
+            $table->integer('total');
+            $table->string('keterangan');
             $table->timestamps();
 
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');

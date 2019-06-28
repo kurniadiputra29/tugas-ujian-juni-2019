@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Model\Item;
+use App\Model\Category;
+use DataTables;
+use Form;
 
 class ItemController extends Controller
 {
@@ -11,9 +15,30 @@ class ItemController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function json_item(){
+
+        $items = Item::all();
+        return Datatables::of($items)
+        ->addColumn('category', function($item){
+            return $item->category->name;
+        })
+        ->addColumn('action', function ($item) {
+            return '<form action="'. route('item.destroy', $item->id) .'" method="POST" class="text-center">
+            <a href="' . route('item.edit', $item->id) . '" class="btn btn-xs btn-success"><i class="glyphicon glyphicon-edit"></i>Edit</a>
+            <input type="hidden" name="_method" value="DELETE">
+            <input type="hidden" name="_token" value="'. csrf_token() .'">
+            <button type="submit" class="btn btn-xs btn-danger btn-label" onclick="javascript:return confirm(\'Apakah anda yakin ingin menghapus data ini?\')"><i class="fa fa-trash"></i>
+            Hapus</button>            
+            </form>
+            ';
+        })
+        ->make(true);
+    }
+
     public function index()
     {
-        //
+        return view('item.index');
     }
 
     /**
@@ -23,7 +48,8 @@ class ItemController extends Controller
      */
     public function create()
     {
-        //
+        $categories = Category::all();
+        return view('item.create', compact('categories'));
     }
 
     /**
@@ -34,7 +60,22 @@ class ItemController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $messages = [
+            'required' => ':attribute wajib diisi !!!'
+        ];
+        $this->validate($request,[
+            'category_id' => 'required',
+            'judul' => 'required',
+            'kode' => 'required',
+            'pengarang' => 'required',
+            'penerbit' => 'required',
+            'harga_beli' => 'required',
+            'tanggal_beli' => 'required',
+            'total' => 'required',
+            'keterangan' => 'required',
+        ],$messages);
+        Item::create($request->all());
+        return redirect('/admin/item')->with('Success', 'Data anda telah berhasil di input !');
     }
 
     /**
@@ -56,7 +97,10 @@ class ItemController extends Controller
      */
     public function edit($id)
     {
-        //
+        $categories1 = Category::orderBy('id', 'asc')->get();
+        $categories2 = Category::find($id);
+        $items = Item::find($id);
+        return view('item.edit', compact('items', 'categories1', 'categories2'));
     }
 
     /**
@@ -68,7 +112,24 @@ class ItemController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $messages = [
+            'required' => ':attribute wajib diisi !!!'
+        ];
+        $this->validate($request,[
+            'category_id' => 'required',
+            'judul' => 'required',
+            'kode' => 'required',
+            'pengarang' => 'required',
+            'penerbit' => 'required',
+            'harga_beli' => 'required',
+            'tanggal_beli' => 'required',
+            'total' => 'required',
+            'keterangan' => 'required',
+        ],$messages);
+        $data = Item::find($id);
+
+        $data->update($request->all());
+        return redirect('/admin/item')->with('Success', 'Data anda telah berhasil di edit !');
     }
 
     /**
@@ -79,6 +140,7 @@ class ItemController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Item::find($id)->delete();
+        return redirect('/admin/item')->with('Success', 'Data anda telah berhasil di hapus !');
     }
 }

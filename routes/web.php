@@ -49,3 +49,23 @@ Route::prefix('admin')->group(function (){
 	Route::delete('trash/{id}', 'ItemController@forceDelete')->name('item.forceDelete');
 	Route::get('item/json_item', 'ItemController@json_item');
 });
+
+Route::prefix('admin')->group(function (){
+	Route::get('member', 'MemberController@index')->name('member.index');
+	Route::get('member/create', 'MemberController@create')->name('member.create');
+	Route::post('member', 'MemberController@store')->name('member.store');
+	Route::get('member/{id}/edit', 'MemberController@edit')->name('member.edit');
+	Route::put('member/{id}', 'MemberController@update')->name('member.update');
+	Route::delete('member/{id}', 'MemberController@destroy')->name('member.destroy');
+	Route::get('member/json_member', 'MemberController@json_member');
+});
+
+Route::prefix('admin')->group(function (){
+	Route::get('status', 'StatusController@index')->name('status.index');
+	Route::get('status/create', 'StatusController@create')->name('status.create');
+	Route::post('status', 'StatusController@store')->name('status.store');
+	Route::get('status/{id}/edit', 'StatusController@edit')->name('status.edit');
+	Route::put('status/{id}', 'StatusController@update')->name('status.update');
+	Route::delete('status/{id}', 'StatusController@destroy')->name('status.destroy');
+	Route::get('status/json_status', 'StatusController@json_status');
+});

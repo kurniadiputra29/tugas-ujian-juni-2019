@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use DataTables;
+use Form;
+use App\Model\Status;
 class StatusController extends Controller
 {
     /**
@@ -11,9 +13,26 @@ class StatusController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function json_status(){
+        $statuses = Status::all();
+
+        return DataTables::of($statuses)
+        ->addColumn('action', function ($status) {
+            return '<form action="'. route('status.destroy', $status->id) .'" method="POST" class="text-center">
+            <a href="' . route('status.edit', $status->id) . '" class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i>Edit</a>
+            <input type="hidden" name="_method" value="DELETE">
+            <input type="hidden" name="_token" value="'. csrf_token() .'">
+            <button type="submit" class="btn btn-xs btn-danger btn-label" onclick="javascript:return confirm(\'Apakah anda yakin ingin menghapus data ini?\')"><i class="fa fa-trash"></i>
+            Hapus</button>
+            </form>
+            ';
+        })
+        ->make(true);
+    }
+
     public function index()
     {
-        //
+        return view('status.index');
     }
 
     /**
@@ -23,7 +42,7 @@ class StatusController extends Controller
      */
     public function create()
     {
-        //
+        return view('status.create');
     }
 
     /**
@@ -34,7 +53,14 @@ class StatusController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $messages = [
+            'required' => ':attribute wajib diisi !!!'
+        ];
+        $this->validate($request,[
+            'name' => 'required'
+        ],$messages);
+        Status::create($request->all());
+        return redirect('/admin/status')->with('Success', 'Data anda telah berhasil di input !');
     }
 
     /**
@@ -56,7 +82,8 @@ class StatusController extends Controller
      */
     public function edit($id)
     {
-        //
+        $statuses = Status::find($id);
+        return view('status.edit', compact('statuses'));
     }
 
     /**
@@ -68,7 +95,16 @@ class StatusController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $messages = [
+            'required' => ':attribute wajib diisi !!!'
+        ];
+        $this->validate($request,[
+            'name' => 'required',
+        ],$messages);
+        $data = Status::find($id);
+
+        $data->update($request->all());
+        return redirect('/admin/status')->with('Success', 'Data anda telah berhasil di edit !');
     }
 
     /**
@@ -79,6 +115,7 @@ class StatusController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Status::find($id)->delete();
+        return redirect('/admin/status')->with('Success', 'Data anda telah berhasil di hapus !');
     }
 }

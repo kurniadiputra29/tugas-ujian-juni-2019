@@ -24,8 +24,10 @@
           <th>Member</th>
           <th>Item</th>
           <th>Tanggal Pinjam</th>
-          <th>Keterangan</th>
+          <th>Tanggal Kembali</th>
           <th>Jumlah</th>
+          <th>Denda</th>
+          <th>Keterangan</th>
           <th style="text-align: center;">Action</th>
         </tr>
       </thead>
@@ -51,7 +53,9 @@
       { data: 'members', name: 'members' },
       { data: 'item', name: 'item' },
       { data: 'tgl_pinjam', name: 'tgl_pinjam' },
+      { data: 'tgl_kembali', name: 'tgl_kembali' },
       { data: 'jumlah', name: 'jumlah' },
+      { data: 'denda', name: 'denda' },
       { data: 'keterangan', name: 'keterangan' },
       {data: 'action', name: 'action', orderable: false, searchable: false}
       ]

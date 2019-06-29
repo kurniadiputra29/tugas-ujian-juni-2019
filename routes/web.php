@@ -79,13 +79,3 @@ Route::prefix('admin')->group(function (){
 	Route::delete('debt/{id}', 'DebtController@destroy')->name('debt.destroy');
 	Route::get('debt/json_debt', 'DebtController@json_debt');
 });
-
-Route::prefix('admin')->group(function (){
-	Route::get('pay', 'PayController@index')->name('pay.index');
-	Route::get('pay/create', 'PayController@create')->name('pay.create');
-	Route::post('pay', 'PayController@store')->name('pay.store');
-	Route::get('pay/{id}/edit', 'PayController@edit')->name('pay.edit');
-	Route::put('pay/{id}', 'PayController@update')->name('pay.update');
-	Route::delete('pay/{id}', 'PayController@destroy')->name('pay.destroy');
-	Route::get('pay/json_pay', 'PayController@json_pay');
-});

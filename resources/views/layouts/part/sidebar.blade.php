@@ -56,18 +56,10 @@
         <li class="@if( $get == 'member') {{'active'}} @endif"><a href="{{route('member.index')}}"><i class="fa fa-circle-o"></i>Members</a></li>
       </ul>
     </li>
-    <li class="@if($get == 'debt' OR $get == 'pay') {{'active'}} @endif treeview">
-      <a href="#">
-        <i class="fa fa-users"></i> <span>Pinjam Meminjam</span>
-        <span class="pull-right-container">
-          <i class="fa fa-angle-left pull-right"></i>
-        </span>
-      </a>
-      <ul class="treeview-menu">
-        <li class="@if ( $get == 'debt') {{'active'}} @endif"><a href="
-          {{route('debt.index')}}"><i class="fa fa-circle-o" ></i>Peminjaman</a></li>
-        <li class="@if( $get == 'pay') {{'active'}} @endif"><a href="{{route('pay.index')}}"><i class="fa fa-circle-o"></i>Pengembalian</a></li>
-      </ul>
+    <li class="@if($get == 'debt') {{'active'}} @endif ">
+          <a href="{{route('debt.index')}}">
+            <i class="fa fa-area-chart"></i> <span>Peminjaman</span>
+          </a>
     </li>
     <li class="@if($get == 'user') {{'active'}} @endif ">
       <a href="{{route('user.index')}}">

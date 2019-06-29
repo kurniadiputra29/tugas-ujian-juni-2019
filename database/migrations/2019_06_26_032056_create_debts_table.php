@@ -18,7 +18,9 @@ class CreateDebtsTable extends Migration
             $table->unsignedInteger('members_id');
             $table->unsignedInteger('item_id');
             $table->date('tgl_pinjam');
+            $table->date('tgl_kembali')->nullable();
             $table->string('jumlah');
+            $table->integer('denda')->nullable();
             $table->string('keterangan');
             $table->timestamps();
 

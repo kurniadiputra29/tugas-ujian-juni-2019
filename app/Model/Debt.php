@@ -8,7 +8,7 @@ class Debt extends Model
 {
     protected $table = "debts";
 
-    protected $fillable = ["members_id", "item_id", "tgl_pinjam", "jumlah", "keterangan"];
+    protected $fillable = ["members_id", "item_id", "tgl_pinjam", "tgl_kembali", "jumlah","denda", "keterangan"];
 
     public function members()
     {

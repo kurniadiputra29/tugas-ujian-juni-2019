@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use DataTables;
 use Form;
 use App\Model\Status;
+use Kris\LaravelFormBuilder\FormBuilder;
+use App\Forms\StatusForm;
+
 class StatusController extends Controller
 {
     /**
@@ -40,9 +43,13 @@ class StatusController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(FormBuilder $formBuilder)
     {
-        return view('status.create');
+        $form = $formBuilder->create(StatusForm::class, [
+            'method' => 'POST',
+            'url' => route('status.store')
+        ]);
+        return view('status.create', compact('form'));
     }
 
     /**

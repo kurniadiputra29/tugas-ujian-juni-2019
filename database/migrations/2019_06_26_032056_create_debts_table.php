@@ -19,6 +19,7 @@ class CreateDebtsTable extends Migration
             $table->unsignedInteger('item_id');
             $table->date('tgl_pinjam');
             $table->string('jumlah');
+            $table->string('keterangan');
             $table->timestamps();
 
             $table->foreign('members_id')->references('id')->on('members')->onDelete('cascade');

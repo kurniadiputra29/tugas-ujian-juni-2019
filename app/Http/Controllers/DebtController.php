@@ -3,7 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Model\Debt;
+use App\Model\Member;
+use App\Model\Item;
+use DataTables;
+use Form;
 class DebtController extends Controller
 {
     /**
@@ -11,9 +15,32 @@ class DebtController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function json_debt(){
+
+        $debts = Debt::all();
+        return DataTables::of($debts)
+        ->addColumn('members', function($debta){
+            return $debta->members->name;
+        })
+        ->addColumn('item', function($debt){
+            return $debt->item->judul;
+        })
+        ->addColumn('action', function ($debt) {
+            return '<form action="'. route('debt.destroy', $debt->id) .'" method="POST" class="text-center">
+            <a href="' . route('debt.edit', $debt->id) . '" class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i>Edit</a>
+            <input type="hidden" name="_method" value="DELETE">
+            <input type="hidden" name="_token" value="'. csrf_token() .'">
+            <button type="submit" class="btn btn-xs btn-danger btn-label" onclick="javascript:return confirm(\'Apakah anda yakin ingin menghapus data ini?\')"><i class="fa fa-trash"></i>
+            Hapus</button>            
+            </form>
+            ';
+        })
+        ->make(true);
+    }
+
     public function index()
     {
-        //
+        return view('debt.index');
     }
 
     /**
@@ -23,7 +50,9 @@ class DebtController extends Controller
      */
     public function create()
     {
-        //
+        $members = Member::all();
+        $items = Item::all();
+        return view('debt.create', compact('members', 'items'));
     }
 
     /**
@@ -34,7 +63,19 @@ class DebtController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $messages = [
+            'required' => ':attribute wajib diisi !!!'
+        ];
+        $this->validate($request,[
+            'members_id' => 'required',
+            'item_id' => 'required',
+            'tgl_pinjam' => 'required',
+            'jumlah' => 'required',
+            'keterangan' => 'required',
+        ],$messages);
+        Debt::create($request->all());
+
+        return redirect('/admin/debt')->with('Success', 'Data anda telah berhasil di input !');
     }
 
     /**
@@ -56,7 +97,10 @@ class DebtController extends Controller
      */
     public function edit($id)
     {
-        //
+        $members = Member::all();
+        $items = Item::all();
+        $debts = Debt::find($id);
+        return view('debt.edit', compact('items', 'debts', 'members'));
     }
 
     /**
@@ -68,7 +112,20 @@ class DebtController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $messages = [
+            'required' => ':attribute wajib diisi !!!'
+        ];
+        $this->validate($request,[
+            'members_id' => 'required',
+            'item_id' => 'required',
+            'tgl_pinjam' => 'required',
+            'jumlah' => 'required',
+            'keterangan' => 'required',
+        ],$messages);
+        $data = Debt::find($id);
+
+        $data->update($request->all());
+        return redirect('/admin/debt')->with('Success', 'Data anda telah berhasil di edit !');
     }
 
     /**
@@ -79,6 +136,7 @@ class DebtController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Debt::find($id)->delete();
+        return redirect('/admin/debt')->with('Success', 'Data anda telah berhasil di hapus !');
     }
 }

@@ -176,6 +176,7 @@ return [
         App\Providers\RouteServiceProvider::class,
 
         Yajra\DataTables\DataTablesServiceProvider::class,
+        Kris\LaravelFormBuilder\FormBuilderServiceProvider::class
 
     ],
 
@@ -229,6 +230,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
 
         'DataTables' => Yajra\DataTables\Facades\DataTables::class,
+        'FormBuilder' => Kris\LaravelFormBuilder\Facades\FormBuilder::class
 
     ],
 

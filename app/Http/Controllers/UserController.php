@@ -8,6 +8,8 @@ use DataTables;
 use Illuminate\Support\Facades\Storage;
 use Form;
 use File;
+use Kris\LaravelFormBuilder\FormBuilder;
+use App\Forms\UserForm;
 
 class UserController extends Controller
 {
@@ -43,9 +45,19 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    // public function create()
+    // {
+    //     return view('user.create');
+    // }
+
+    public function create(FormBuilder $formBuilder)
     {
-        return view('user.create');
+        $form = $formBuilder->create(UserForm::class, [
+            'method' => 'POST',
+            'url' => route('user.store')
+        ]);
+
+        return view('user.create', compact('form'));
     }
 
     /**
@@ -100,9 +112,20 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    // public function edit($id)
+    // {
+    //     $users = User::find($id);
+    //     return view('user.edit', compact('users'));
+    // }
+    public function edit(FormBuilder $formBuilder, $id)
     {
         $users = User::find($id);
+        $form = $formBuilder->create(UserForm::class, [
+            'method' => 'PUT',
+            'model' => $users,
+            'url' => route('user.update', $id)
+        ]);
+        
         return view('user.edit', compact('users'));
     }
 

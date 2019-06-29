@@ -117,15 +117,9 @@ class UserController extends Controller
     //     $users = User::find($id);
     //     return view('user.edit', compact('users'));
     // }
-    public function edit(FormBuilder $formBuilder, $id)
+    public function edit($id)
     {
         $users = User::find($id);
-        $form = $formBuilder->create(UserForm::class, [
-            'method' => 'PUT',
-            'model' => $users,
-            'url' => route('user.update', $id)
-        ]);
-        
         return view('user.edit', compact('users'));
     }
 

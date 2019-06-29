@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Model\Category;
 use DataTables;
 use Form;
+use Kris\LaravelFormBuilder\FormBuilder;
+use App\Forms\CategoryForm;
 
 class CategoryController extends Controller
 {
@@ -44,9 +46,13 @@ class CategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(FormBuilder $formBuilder)
     {
-        return view('category.create');
+        $form = $formBuilder->create(CategoryForm::class, [
+            'method' => 'POST',
+            'url' => route('category.store')
+        ]);
+        return view('category.create', compact('form'));
     }
 
     /**

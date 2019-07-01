@@ -87,10 +87,15 @@ class StatusController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(FormBuilder $formBuilder, $id)
     {
         $statuses = Status::find($id);
-        return view('status.edit', compact('statuses'));
+        $form = $formBuilder->create(StatusForm::class, [
+            'method' => 'PUT',
+            'model' => $statuses,
+            'url' => route('status.update', $id)
+        ]);
+        return view('status.create', compact('form'));
     }
 
     /**

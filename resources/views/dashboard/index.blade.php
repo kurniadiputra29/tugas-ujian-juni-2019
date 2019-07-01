@@ -17,14 +17,14 @@
 			<!-- small box -->
 			<div class="small-box bg-aqua">
 				<div class="inner">
-					<h3>{{-- {{$productCount}} --}}</h3>
+					<h3>{{$categoryCount}}</h3>
 
-					<p>PRODUCT</p>
+					<p>Category</p>
 				</div>
 				<div class="icon">
 					<i class="fa fa-database"></i>
 				</div>
-				<a href="{{-- {{route('item.index')}} --}}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+				<a href="{{route('category.index')}}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
 			</div>
 		</div>
 		<!-- ./col -->
@@ -32,14 +32,14 @@
 			<!-- small box -->
 			<div class="small-box bg-green">
 				<div class="inner">
-					<h3>{{-- {{$orderCount}} --}}</h3>
+					<h3>{{$debtsCount}}</h3>
 
-					<p>ORDER</p>
+					<p>Peminjaman</p>
 				</div>
 				<div class="icon">
 					<i class="fa fa-cart-plus"></i>
 				</div>
-				<a href="{{-- {{route('order.index')}} --}}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+				<a href="{{route('debt.index')}}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
 			</div>
 		</div>
 		<!-- ./col -->
@@ -47,14 +47,14 @@
 			<!-- small box -->
 			<div class="small-box bg-red">
 				<div class="inner">
-					<h3>{{-- {{$paymentCount}} --}}</h3>
+					<h3>{{$memberCount}}</h3>
 
-					<p>PAYMENT</p>
+					<p>MEMBERS</p>
 				</div>
 				<div class="icon">
 					<i class="fa fa-money"></i>
 				</div>
-				<a href="{{-- {{route('payment.index')}} --}}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+				<a href="{{route('member.index')}}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
 			</div>
 		</div>
 		<!-- ./col -->

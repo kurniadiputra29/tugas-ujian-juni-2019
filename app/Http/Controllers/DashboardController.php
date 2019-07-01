@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Model\User;
+use App\Model\Category;
+use App\Model\Member;
+use App\Model\Debt;
 
 class DashboardController extends Controller
 {
@@ -16,7 +19,15 @@ class DashboardController extends Controller
     {
         $user = User::all();
         $userCount = count($user);
-        return view('dashboard.index', compact('userCount'));
+        $category = Category::all();
+        $categoryCount = count($category);
+        $members = Member::all();
+        $memberCount = count($members);
+        $members = Member::all();
+        $memberCount = count($members);
+        $debts = Debt::all();
+        $debtsCount = count($debts);
+        return view('dashboard.index', compact('userCount', 'categoryCount', 'memberCount', 'debtsCount'));
     }
 
     /**

@@ -91,10 +91,16 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(FormBuilder $formBuilder ,$id)
     {
         $categories = Category::find($id);
-        return view('category.edit', compact('categories'));
+        $form = $formBuilder->create(CategoryForm::class, [
+            'method' => 'PUT',
+            'model' => $categories,
+            'url' => route('category.update', $id)
+        ]);
+
+        return view('category.create', compact('form'));
     }
 
     /**

@@ -13,7 +13,7 @@
 <div class="box">
   <div class="box-header">
     <h3 class="box-title">INDEX DEBTS</h3>
-    <a href="{{route('debt.create')}}" class="btn btn-info pull-right">Create</a>
+    <a href="{{route('debt.create')}}" class="btn btn-info pull-right">Pinjam</a>
   </div>
   <!-- /.box-header -->
   <div class="box-body">
@@ -53,9 +53,29 @@
       { data: 'members', name: 'members' },
       { data: 'item', name: 'item' },
       { data: 'tgl_pinjam', name: 'tgl_pinjam' },
-      { data: 'tgl_kembali', name: 'tgl_kembali' },
+      // { data: 'tgl_kembali', name: 'tgl_kembali' },
+      { data: 'tgl_kembali', name: 'tgl_kembali', render: function (data, type, full, meta) {
+          var text = "Belum Dikembalikan";
+          var label = "warning";
+          if (data == null){
+           return "<span class='label label-" + label + "'>"+ text + "</span>";
+          } else {
+           return data;
+          }
+        }
+      },
       { data: 'jumlah', name: 'jumlah' },
-      { data: 'denda', name: 'denda' },
+      // { data: 'denda', name: 'denda' },
+      { data: 'denda', name: 'denda', render: function (data, type, full, meta) {
+          var text = "Tidak ada denda";
+          var label = "success";
+          if (data == null){
+           return "<span class='label label-" + label + "'>"+ text + "</span>";
+          } else {
+           return data;
+          }
+        }
+      },
       { data: 'keterangan', name: 'keterangan' },
       {data: 'action', name: 'action', orderable: false, searchable: false}
       ]

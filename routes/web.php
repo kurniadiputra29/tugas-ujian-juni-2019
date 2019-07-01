@@ -78,4 +78,6 @@ Route::prefix('admin')->group(function (){
 	Route::put('debt/{id}', 'DebtController@update')->name('debt.update');
 	Route::delete('debt/{id}', 'DebtController@destroy')->name('debt.destroy');
 	Route::get('debt/json_debt', 'DebtController@json_debt');
+	Route::get('debt/{id}/pays', 'DebtController@pays')->name('debt.pays');
+	Route::put('debt/{id}', 'DebtController@updatepays')->name('debt.updatepays');
 });

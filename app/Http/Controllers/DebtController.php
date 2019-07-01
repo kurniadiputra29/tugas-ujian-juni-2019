@@ -27,6 +27,7 @@ class DebtController extends Controller
         })
         ->addColumn('action', function ($debt) {
             return '<form action="'. route('debt.destroy', $debt->id) .'" method="POST" class="text-center">
+            <a href="' . route('debt.pays', $debt->id) . '" class="btn btn-success btn-xs"><i class="fa fa-pencil"></i>Kembali</a>
             <a href="' . route('debt.edit', $debt->id) . '" class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i>Edit</a>
             <input type="hidden" name="_method" value="DELETE">
             <input type="hidden" name="_token" value="'. csrf_token() .'">
@@ -128,6 +129,27 @@ class DebtController extends Controller
         return redirect('/admin/debt')->with('Success', 'Data anda telah berhasil di edit !');
     }
 
+    public function pays($id)
+    {
+        $pays = Debt::find($id);
+        return view('debt.pays', compact('pays'));
+    }
+
+    public function updatepays(Request $request, $id)
+    {
+        $messages = [
+            'required' => ':attribute wajib diisi !!!'
+        ];
+        $this->validate($request,[
+            'tgl_kembali' => 'required',
+            'jumlah' => 'required',
+            'keterangan' => 'required',
+        ],$messages);
+        $data = Debt::find($id);
+
+        $data->update($request->all());
+        return redirect('/admin/debt')->with('Success', 'Data anda telah berhasil di input !');
+    }
     /**
      * Remove the specified resource from storage.
      *

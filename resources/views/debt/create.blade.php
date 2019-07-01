@@ -56,21 +56,9 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<label for="tgl_kembali" class="col-sm-2 control-label">Tanggal Kembali</label>
-				<div class="col-sm-10">
-					<input type="date" name="tgl_kembali" class="form-control" id="tgl_kembali" placeholder="Tanggal Kembali" value="{{ old('tgl_kembali') }}">
-				</div>
-			</div>
-			<div class="form-group">
 				<label for="jumlah" class="col-sm-2 control-label">Jumlah Buku</label>
 				<div class="col-sm-10">
 					<input type="number" name="jumlah" class="form-control" id="jumlah" placeholder="Jumlah Buku" value="{{ old('jumlah') }}">
-				</div>
-			</div>
-			<div class="form-group">
-				<label for="denda" class="col-sm-2 control-label">Denda</label>
-				<div class="col-sm-10">
-					<input type="number" name="denda" class="form-control" id="denda" placeholder="Denda" value="{{ old('denda') }}">
 				</div>
 			</div>
 			<div class="form-group">

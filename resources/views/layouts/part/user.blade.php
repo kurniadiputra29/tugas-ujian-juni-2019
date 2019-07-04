@@ -1,23 +1,23 @@
 <li class="dropdown user user-menu">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-    {{-- @if( auth()->user()->password  == null)
-    <img src="{{auth()->user()->foto}}" class="user-image" alt="User Image">
+    @if( auth()->user()->password  == null)
+    <img src="{{auth()->user()->photo}}" class="user-image" alt="User Image">
     @else
-    <img src="{{Storage::url(auth()->user()->foto)}}" class="user-image" alt="User Image">
+    <img src="{{Storage::url(auth()->user()->photo)}}" class="user-image" alt="User Image">
     @endif
-    <span class="hidden-xs">{{ auth()->user()->name }}</span> --}}
+    <span class="hidden-xs">{{ auth()->user()->name }}</span>
   </a>
   <ul class="dropdown-menu">
     <!-- User image -->
     <li class="user-header">
-      {{-- @if( auth()->user()->password  == null)
-      <img src="{{auth()->user()->foto}}" class="img-circle" alt="User Image">
+      @if( auth()->user()->password  == null)
+      <img src="{{auth()->user()->photo}}" class="img-circle" alt="User Image">
       @else
-      <img src="{{Storage::url(auth()->user()->foto)}}" class="img-circle" alt="User Image">
+      <img src="{{Storage::url(auth()->user()->photo)}}" class="img-circle" alt="User Image">
       @endif
 
       <p>
-        {{ auth()->user()->name }} --}}
+        {{ auth()->user()->name }}
         <small>Member since Nov. 2012</small>
       </p>
     </li>
@@ -42,7 +42,7 @@
         <a href="#" class="btn btn-default btn-flat">Profile</a>
       </div>
       <div class="pull-right">
-        <form method="post" action="{{-- {{route('login.logout')}} --}}">
+        <form method="post" action="{{route('login.logout')}}">
           @csrf
           <button type="submit" class="btn btn-default btn-flat">Sign out
           </button>

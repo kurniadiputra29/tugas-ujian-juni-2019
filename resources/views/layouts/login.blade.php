@@ -40,7 +40,7 @@
         {{ session('Success') }}
       </div>
       @endif
-      <form action="{{route('log.login')}}" method="post">
+      <form action="{{route('login.input')}}" method="post">
         @csrf
         <div class="form-group has-feedback">
           <input type="email" name="email" class="form-control" placeholder="Email">

@@ -11,14 +11,15 @@
       <!-- Sidebar user panel -->
       <div class="user-panel">
         <div class="pull-left image">
-          {{-- @if( auth()->user()->password  == null)
-          <img src="{{auth()->user()->foto}}" class="img-circle" alt="User Image">
+          @if( auth()->user()->password  == null)
+          <img src="{{auth()->user()->photo}}" class="img-circle" alt="User Image">
           @else
-          <img src="{{Storage::url(auth()->user()->foto)}}" class="img-circle" alt="User Image">
-          @endif --}}
+          <img src="{{Storage::url(auth()->user()->photo)}}" class="img-circle" alt="User Image">
+          {{-- <img src="/storage/{{auth()->user()->photo}}" class="img-circle" alt="User Image"> --}}
+          @endif
     </div>
     <div class="pull-left info">
-      {{-- <p>{{ auth()->user()->name }}</p> --}}
+      <p>{{ auth()->user()->name }}</p>
       <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
     </div>
   </div>

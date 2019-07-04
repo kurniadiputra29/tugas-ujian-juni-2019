@@ -15,13 +15,13 @@ class LoginController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('guest')->except('logout', 'form', 'login');
+        $this->middleware('guest')->except('logout', 'form', 'input');
     }
     public function form()
     {
     	return view('layouts.login');
     }
-    public function login(Request $request)
+    public function input(Request $request)
     {
     	$credentials = $request->only('email','password');
     	// return $credentials;//untuk mengecek credentials => bentuknya objek
@@ -35,6 +35,6 @@ class LoginController extends Controller
     public function logout()
     {
     	Auth::logout();
-        return redirect('/form');
+        return redirect('/login');
     }
 }

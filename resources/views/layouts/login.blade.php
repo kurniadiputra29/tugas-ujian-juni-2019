@@ -65,8 +65,8 @@
           Github</a>
         </div>
       </form>
-      <a href="{{-- {{route('resetpassword')}} --}}">I forgot my password</a><br>
-    <a href="{{-- {{route('register')}} --}}" class="text-center">Register a new membership</a>
+      <a href="{{route('resetpassword')}}">I forgot my password</a><br>
+    <a href="{{route('register')}}" class="text-center">Register a new membership</a>
     </div>
     <!-- /.login-box-body -->
   </div>

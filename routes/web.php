@@ -10,14 +10,35 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+//login
 Route::get('/login', 'LoginController@form')->name('login.form');
 Route::post('/login', 'LoginController@input')->name('login.input');
 Route::post('/logout', 'LoginController@logout')->name('login.logout');
 
+//resetpass
+Route::prefix('admin')->group(function (){
+	Route::get('resetpassword', function () {
+		return view('layouts.resetpass.email');
+	})->name('resetpassword');
+	Route::post('resetpassword', 'ResetPassword@resetpass')->name('reset.pass');
+	Route::get('confirmasipassword', function () {
+		return view('layouts.resetpass.confirmasi');
+	})->name('confirm');
+	Route::post('confirmasipassword', 'ResetPassword@confirmpass')->name('confirm.pass');
+	Route::put('reset', 'ResetPassword@update')->name('reset.update');
+	Route::get('register', function () {
+		return view('layouts.resetpass.register');
+	})->name('register');
+	Route::post('register', 'ResetPassword@register')->name('proses.register');
+});
+
+//dashboard
 Route::prefix('admin')->group(function (){
 	Route::get('dashboard', 'DashboardController@index')->name('dashboard.index');
 });
 
+//users
 Route::prefix('admin')->group(function (){
 	Route::get('user', 'UserController@index')->name('user.index');
 	Route::get('user/create', 'UserController@create')->name('user.create');
@@ -28,6 +49,7 @@ Route::prefix('admin')->group(function (){
 	Route::get('user/json_user', 'UserController@json_user');
 });
 
+//category
 Route::prefix('admin')->group(function (){
 	Route::get('category', 'CategoryController@index')->name('category.index');
 	Route::get('category/create', 'CategoryController@create')->name('category.create');
@@ -38,6 +60,7 @@ Route::prefix('admin')->group(function (){
 	Route::get('category/json_category', 'CategoryController@json_category');
 });
 
+//item
 Route::prefix('admin')->group(function (){
 	Route::get('item', 'ItemController@index')->name('item.index');
 	Route::get('item/create', 'ItemController@create')->name('item.create');
@@ -50,6 +73,7 @@ Route::prefix('admin')->group(function (){
 	Route::get('item/json_item', 'ItemController@json_item');
 });
 
+//members
 Route::prefix('admin')->group(function (){
 	Route::get('member', 'MemberController@index')->name('member.index');
 	Route::get('member/create', 'MemberController@create')->name('member.create');
@@ -60,6 +84,7 @@ Route::prefix('admin')->group(function (){
 	Route::get('member/json_member', 'MemberController@json_member');
 });
 
+//status
 Route::prefix('admin')->group(function (){
 	Route::get('status', 'StatusController@index')->name('status.index');
 	Route::get('status/create', 'StatusController@create')->name('status.create');
@@ -70,6 +95,7 @@ Route::prefix('admin')->group(function (){
 	Route::get('status/json_status', 'StatusController@json_status');
 });
 
+//debt
 Route::prefix('admin')->group(function (){
 	Route::get('debt', 'DebtController@index')->name('debt.index');
 	Route::get('debt/create', 'DebtController@create')->name('debt.create');

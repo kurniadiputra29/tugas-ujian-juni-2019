@@ -1,13 +1,7 @@
 @extends('layouts.app')
-@section('title', 'category')
+@section('title', 'dashboard')
 @section('header')
-<h1>
-	Category
-</h1>
-<ol class="breadcrumb">
-	<li><a href="#"><i class="fa fa-dashboard"></i> Product</a></li>
-	<li class="active">Index Category</li>
-</ol>
+
 @endsection
 @section('content')
 <section class="content">

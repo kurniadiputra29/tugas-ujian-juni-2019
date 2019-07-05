@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'category')
+@section('title', 'Item')
 @section('header')
 <h1>
   Item

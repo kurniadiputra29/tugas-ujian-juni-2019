@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use App\Model\SocialAccount;
 
 class User extends Authenticatable // jika intuk membuat login harus menggunakan Authenticatable
 {
@@ -28,7 +29,11 @@ class User extends Authenticatable // jika intuk membuat login harus menggunakan
     protected $hidden = [
         'password', 'remember_token',
     ];
-
+    
+    public function socialAccount()
+    {
+        return $this->hasMany(SocialAccount::class);
+    }
     /**
      * The attributes that should be cast to native types.
      *

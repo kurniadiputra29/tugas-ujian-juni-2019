@@ -175,9 +175,12 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+        //Yajra
         Yajra\DataTables\DataTablesServiceProvider::class,
-        Kris\LaravelFormBuilder\FormBuilderServiceProvider::class
-
+        //Formbuilder
+        Kris\LaravelFormBuilder\FormBuilderServiceProvider::class,
+        //Socialite
+        Laravel\Socialite\SocialiteServiceProvider::class,
     ],
 
     /*
@@ -230,8 +233,8 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
 
         'DataTables' => Yajra\DataTables\Facades\DataTables::class,
-        'FormBuilder' => Kris\LaravelFormBuilder\Facades\FormBuilder::class
-
+        'FormBuilder' => Kris\LaravelFormBuilder\Facades\FormBuilder::class,
+        'Socialite' => Laravel\Socialite\Facades\Socialite::class,
     ],
 
 ];

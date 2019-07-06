@@ -107,3 +107,9 @@ Route::prefix('admin')->group(function (){
 	Route::get('debt/{id}/pays', 'DebtController@pays')->name('debt.pays');
 	Route::put('debt/{id}', 'DebtController@updatepays')->name('debt.updatepays');
 });
+
+//Socialite
+Route::group(['prefix' => 'social-media', 'namespace' => 'Auth'], function(){
+    Route::get('register/{provider}', 'SocialiteController@register');
+    Route::get('registered/{provider}', 'SocialiteController@registered');
+});

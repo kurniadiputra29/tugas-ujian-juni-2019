@@ -65,10 +65,11 @@ class MemberController extends Controller
     public function store(Request $request)
     {
         $messages = [
-            'required' => ':attribute wajib diisi !!!'
+            'required' => ':attribute wajib diisi !!!',
+            'unique' => ':attribute sudah terpakai !!!'
         ];
         $this->validate($request,[
-            'NIP' => 'required',
+            'NIP' => 'unique:members,NIP|required',
             'name' => 'required',
             'alamat' => 'required',
             'status_id' => 'required',
@@ -112,10 +113,11 @@ class MemberController extends Controller
     public function update(Request $request, $id)
     {
         $messages = [
-            'required' => ':attribute wajib diisi !!!'
+            'required' => ':attribute wajib diisi !!!',
+            'unique' => ':attribute sudah terpakai !!!'
         ];
         $this->validate($request,[
-            'NIP' => 'required',
+            'NIP' => 'unique:members,NIP,'.$id,
             'name' => 'required',
             'alamat' => 'required',
             'status_id' => 'required',

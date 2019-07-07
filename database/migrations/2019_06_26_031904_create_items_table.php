@@ -17,7 +17,7 @@ class CreateItemsTable extends Migration
             $table->Increments('id');
             $table->unsignedInteger('category_id');
             $table->string('judul');
-            $table->string('kode');
+            $table->string('kode')->unique();
             $table->string('pengarang');
             $table->string('penerbit');
             $table->integer('harga_beli');

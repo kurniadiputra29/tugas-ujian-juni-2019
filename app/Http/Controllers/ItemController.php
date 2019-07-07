@@ -65,12 +65,13 @@ class ItemController extends Controller
     public function store(Request $request)
     {
         $messages = [
-            'required' => ':attribute wajib diisi !!!'
+            'required' => ':attribute wajib diisi !!!',
+            'unique' => ':attribute buku sudah terpakai !!!'
         ];
         $this->validate($request,[
             'category_id' => 'required',
             'judul' => 'required',
-            'kode' => 'required',
+            'kode' => 'unique:items,kode|required',
             'pengarang' => 'required',
             'penerbit' => 'required',
             'harga_beli' => 'required',
@@ -116,12 +117,13 @@ class ItemController extends Controller
     public function update(Request $request, $id)
     {
         $messages = [
-            'required' => ':attribute wajib diisi !!!'
+            'required' => ':attribute wajib diisi !!!',
+            'unique' => ':attribute buku sudah terpakai !!!'
         ];
         $this->validate($request,[
             'category_id' => 'required',
             'judul' => 'required',
-            'kode' => 'required',
+            'kode' => 'unique:items,kode,'.$id,
             'pengarang' => 'required',
             'penerbit' => 'required',
             'harga_beli' => 'required',
